@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 import javax.swing.*;
 
-public class Stručnjak extends JFrame implements Serializable {
+public class Strucnjak extends JFrame implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public Stručnjak() {
+    public Strucnjak() {
         getContentPane().setBackground(new Color(0, 128, 255));
         getContentPane().setForeground(new Color(0, 0, 0));
         setTitle("Sučelje za stručnjaka");
@@ -64,7 +64,7 @@ public class Stručnjak extends JFrame implements Serializable {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new Stručnjak().setVisible(true);
+                new Strucnjak().setVisible(true);
             }
         });
     }
