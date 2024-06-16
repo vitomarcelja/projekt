@@ -26,7 +26,7 @@ public class Strucnjak extends JFrame implements Serializable {
         btnPodaciostrucnjaku.setFont(new Font("SansSerif", Font.BOLD, 12));
         btnPodaciostrucnjaku.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Podaci2 podaci = new Podaci2("loncarl@gmail.com", "agz6775", 123456, "Ivan", "Perić", "Nutricionist");
+                Podaci2 podaci = new Podaci2("abcd@gmail.com", "agz6775", 123456, "Ivan", "Perić", "Nutricionist");
                 podaci.setVisible(true);
             }
         });

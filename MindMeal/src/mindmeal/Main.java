@@ -49,7 +49,7 @@ public class Main {
     }
 
     private static void openExpertInterface() {
-        Strucnjak stručnjak = new Strucnjak();
-        stručnjak.setVisible(true);
+        Strucnjak strucnjak = new Strucnjak();
+        strucnjak.setVisible(true);
     }
 }

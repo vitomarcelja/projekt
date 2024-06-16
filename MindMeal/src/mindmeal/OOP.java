@@ -1,5 +1,6 @@
 package mindmeal;
 
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ public class OOP extends JFrame implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private JTextField txtPlanName;
+    private JTextField txtIngredients;
     private JTextArea txtAreaResults;
 
     private Connection conn;
@@ -30,6 +32,10 @@ public class OOP extends JFrame implements Serializable {
         txtPlanName.setBackground(new Color(255, 255, 255));
         txtPlanName.setFont(new Font("Tahoma", Font.PLAIN, 12));
         txtPlanName.setBounds(30, 113, 236, 33);
+        txtIngredients = new JTextField(20);
+        txtIngredients.setBackground(new Color(255, 255, 255));
+        txtIngredients.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        txtIngredients.setBounds(30, 187, 236, 33);
 
         JButton btnSearch = new JButton("Search");
         btnSearch.setForeground(new Color(0, 128, 255));
@@ -38,12 +44,10 @@ public class OOP extends JFrame implements Serializable {
         btnSearch.setFont(new Font("SansSerif", Font.BOLD, 12));
         btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchMealPlans(txtPlanName.getText());
+                searchMealPlans(txtPlanName.getText(), txtIngredients.getText());
             }
         });
         getContentPane().setLayout(null);
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(30, 308, 406, 138);
         panel.setLayout(null);
 
         JLabel label = new JLabel("Naziv:");
@@ -52,12 +56,13 @@ public class OOP extends JFrame implements Serializable {
         label.setFont(new Font("SansSerif", Font.BOLD, 15));
         panel.add(label);
         panel.add(txtPlanName);
+        JLabel label_1 = new JLabel("Sastojci:");
+        label_1.setBounds(30, 156, 65, 33);
+        label_1.setForeground(new Color(255, 255, 255));
+        label_1.setFont(new Font("SansSerif", Font.BOLD, 15));
+        panel.add(label_1);
+        panel.add(txtIngredients);
         panel.add(btnSearch);
-        panel.add(scrollPane);
-        
-        txtAreaResults = new JTextArea(10, 30);
-        txtAreaResults.setFont(new Font("Arial", Font.PLAIN, 12));
-        scrollPane.setViewportView(txtAreaResults);
 
         getContentPane().add(panel);
         
@@ -66,6 +71,13 @@ public class OOP extends JFrame implements Serializable {
         lblPretražiplanoveprehrane.setFont(new Font("SansSerif", Font.BOLD, 20));
         lblPretražiplanoveprehrane.setBounds(72, 33, 282, 44);
         panel.add(lblPretražiplanoveprehrane);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(30, 308, 406, 138);
+        panel.add(scrollPane);
+        
+        txtAreaResults = new JTextArea(10, 30);
+        txtAreaResults.setFont(new Font("Arial", Font.PLAIN, 12));
+        scrollPane.setViewportView(txtAreaResults);
         
         JLabel lblNewLabel = new JLabel("⸙");
         lblNewLabel.setForeground(new Color(128, 255, 0));
@@ -91,16 +103,17 @@ public class OOP extends JFrame implements Serializable {
         }
     }
 
-    private void searchMealPlans(String planName) {
+    private void searchMealPlans(String planName, String ingredients) {
         if (conn == null) {
             JOptionPane.showMessageDialog(OOP.this, "Error: Database connection not established.");
             return;
         }
 
         try {
-            String sql = "SELECT * FROM Opći_plan_prehrane WHERE Naziv_plana_prehrane LIKE ?";
+            String sql = "SELECT * FROM Opći_plan_prehrane WHERE Naziv_plana_prehrane LIKE ? OR Lista_sastojaka LIKE ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, planName + "%");
+            stmt.setString(1, "%" + planName + "%");
+            stmt.setString(2, "%" + ingredients + "%");
 
             ResultSet rs = stmt.executeQuery();
 
@@ -133,5 +146,3 @@ public class OOP extends JFrame implements Serializable {
         });
     }
 }
-
-

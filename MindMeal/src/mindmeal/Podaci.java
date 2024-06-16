@@ -49,7 +49,7 @@ public class Podaci extends JFrame implements Serializable {
         lblLastName = new JLabel("Prezime: " + lastName);
         lblLastName.setFont(new Font("SansSerif", Font.BOLD, 12));
         lblLastName.setBounds(28, 241, 264, 27);
-        lblDateOfBirth = new JLabel("Datum rođenja: " + dateOfBirth);
+        lblDateOfBirth = new JLabel("Datum rodenja: " + dateOfBirth);
         lblDateOfBirth.setFont(new Font("SansSerif", Font.BOLD, 12));
         lblDateOfBirth.setBounds(28, 257, 264, 27);
         lblGender = new JLabel("Spol: " + gender);
@@ -105,14 +105,14 @@ public class Podaci extends JFrame implements Serializable {
     public static void main(String[] args) {
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://ucka.veleri.hr:3306/kbazon";
-            String user = "kbazon";
+            String url = "jdbc:mysql://ucka.veleri.hr:3306/vmarcelja";
+            String user = "vmarcelja";
             String password = "11";
             conn = DriverManager.getConnection(url, user, password);
 
             String query = "SELECT * FROM Korisnik WHERE ID_Korisnika = ?";
             PreparedStatement statement = conn.prepareStatement(query);
-            statement.setInt(1, 98765); 
+            statement.setInt(1, 1); 
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -122,10 +122,10 @@ public class Podaci extends JFrame implements Serializable {
                 int userID = resultSet.getInt("ID_Korisnika");
                 String firstName = resultSet.getString("Ime_Korisnika");
                 String lastName = resultSet.getString("Prezime_Korisnika");
-                Date dob = resultSet.getDate("Datum_rođenja");
+                Date dob = resultSet.getDate("Datum_rodenja");
                 String gender = resultSet.getString("Spol");
                 String healthConditions = resultSet.getString("Zdravstveni_uvjeti_Korisnika");
-                String diagnosis = resultSet.getString("Dijagnoza_Korisnka");
+                String diagnosis = resultSet.getString("Dijagnoza_Korisnika");
 
                 Podaci userInfoWindow = new Podaci(email, pass, userID, firstName, lastName, dob, gender, healthConditions, diagnosis);
                 userInfoWindow.setVisible(true);

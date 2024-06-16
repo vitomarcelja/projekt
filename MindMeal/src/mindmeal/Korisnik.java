@@ -13,7 +13,7 @@ public class Korisnik extends JFrame {
     private static final long serialVersionUID = 1L;
 
     public Korisnik() {
-        getContentPane().setBackground(new Color(0, 128, 0)); 
+        getContentPane().setBackground(new Color(0, 128, 255));
         getContentPane().setForeground(new Color(0, 0, 0));
         setTitle("Korisničko sučelje");
         setSize(413, 337);
@@ -84,4 +84,3 @@ public class Korisnik extends JFrame {
         });
     }
 }
-

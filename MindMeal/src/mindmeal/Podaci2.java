@@ -82,24 +82,24 @@ public class Podaci2 extends JFrame implements Serializable {
     public static void main(String[] args) {
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://ucka.veleri.hr:3306/kbazon";
-            String user = "kbazon";
+            String url = "jdbc:mysql://ucka.veleri.hr:3306/vmarcelja";
+            String user = "vmarcelja";
             String password = "11";
             conn = DriverManager.getConnection(url, user, password);
 
-            String query = "SELECT * FROM Stručnjak WHERE ID_Stručnjaka = ?";
+            String query = "SELECT * FROM Strucnjak WHERE ID_Strucnjaka = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, 123456); 
 
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                String mail = resultSet.getString("Mail_Stručnjaka");
-                String lozinka = resultSet.getString("Lozinka_Stručnjaka");
-                int idStrucnjaka = resultSet.getInt("ID_Stručnjaka");
-                String ime = resultSet.getString("Ime_Stručnjaka");
-                String prezime = resultSet.getString("Prezime_Stručnjaka");
-                String specijalizacija = resultSet.getString("Specijalizacija_Stručnjaka");
+                String mail = resultSet.getString("Mail_Strucnjaka");
+                String lozinka = resultSet.getString("Lozinka_Strucnjaka");
+                int idStrucnjaka = resultSet.getInt("ID_Strucnjaka");
+                String ime = resultSet.getString("Ime_Strucnjaka");
+                String prezime = resultSet.getString("Prezime_Strucnjaka");
+                String specijalizacija = resultSet.getString("Specijalizacija_Strucnjaka");
 
                 Podaci2 strucnjakInfoWindow = new Podaci2(mail, lozinka, idStrucnjaka, ime, prezime, specijalizacija);
                 strucnjakInfoWindow.setVisible(true);
